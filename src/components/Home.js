@@ -1,21 +1,20 @@
 import React from 'react';
 import TodoList from './TodoList';
+import SearchBar from './SearchBar';
+import Footer from './Footer';
 
-const todos = [
-    { id: 1, text: 'todo 1'},
-    { id: 2, text: 'todo 1'},
-    { id: 3, text: 'todo 1'},
-    { id: 4, text: 'todo 1'},
-    { id: 5, text: 'todo 1'},
-    { id: 6, text: 'todo 1'},
-    { id: 7, text: 'todo 1'},
-    { id: 8, text: 'todo 1'},
-    { id: 9, text: 'todo 1'},
-    { id: 10, text: 'todo 1'}
-];
+const todos = [...Array(25).keys()]
+    .map(i => ({ id: i + 1, text: `todo ${i}`}));
 
+const searchTerm = 'search term';
 export default function Home() {
-    return (<div>
-        <TodoList todos={todos} />
+    return (<div className="home-container">
+        <SearchBar search={searchTerm} />
+
+        <div>
+            <TodoList todos={todos} />
+        </div>
+
+        <Footer />
     </div>);
 }
