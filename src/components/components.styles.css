@@ -20,19 +20,26 @@
     margin-top: 12px;
 }
 
-/* .footer input {
-    width: 100%;
-} */
-
 .search-bar {
     position: sticky;
     top: 3px;
     margin-bottom: 8px;
 }
 
-.search-bar > input {
+.search-bar > input, 
+.edit-item-pane-cntr input {
     font-size: 22px;
     width: 100%;
     border: 0;
     padding: 8px;
+}
+
+.bottom-btn-cntr {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.edit-item-pane-cntr {
+    background-color: #cfc96c;
 }
