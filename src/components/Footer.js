@@ -23,12 +23,13 @@ export default function Footer() {
     };
 
     return (<div className="footer">
-        {edit && <div>
+        {edit && <>
             <div className="bottom-btn-cntr">
                 <button onClick={closeTodoEdit}>x</button>
             </div>
-            <EditTodoPane todo={todo} onTodoSave={onTodoSave} key={todo.id} />
-        </div>}
+            <EditTodoPane todo={todo} onTodoSave={onTodoSave}
+                key={todo.id} />
+        </>}
 
         {!edit && <div className="bottom-btn-cntr">
             <button onClick={onEditClick}>+</button>

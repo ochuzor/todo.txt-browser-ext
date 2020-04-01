@@ -9,7 +9,7 @@
     padding: 8px;
     min-height: 60px;
     margin-top: 3px;
-    background-color: #826121;
+    background-color: #d3b340;
     color: #ece7ce;
     font-size: 22px;
 }
@@ -41,5 +41,10 @@
 }
 
 .edit-item-pane-cntr {
-    background-color: #cfc96c;
+    background-color: #fff;
+    font-size: 16pt;
+}
+
+.todo-item-details-cntr {
+    padding: 5px;
 }

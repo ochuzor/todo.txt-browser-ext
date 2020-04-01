@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TodoItemDetails from './TodoItemDetails';
 
-export default function EditTodoPane({todo, onTodoSave}) {
+export default function EditTodoPane({todo, onTodoSave, onClose}) {
     const [text, setTextValue] = useState(todo.text);
 
     const saveTodo = () => {
@@ -25,6 +25,7 @@ export default function EditTodoPane({todo, onTodoSave}) {
         <TodoItemDetails todo={todo} />
 
         <div className="bottom-btn-cntr">
+            {!!onClose && <button onClick={onClose}>x</button>}
             <button onClick={saveTodo}>save</button>
         </div>
     </div>)
