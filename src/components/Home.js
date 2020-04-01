@@ -1,13 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import TodoList from './TodoList';
 import SearchBar from './SearchBar';
 import Footer from './Footer';
 
-const todos = [...Array(25).keys()]
-    .map(i => ({ id: i + 1, text: `todo ${i}`}));
+const mapStateToProps = state => {
+    return {
+        todos: state.todos.docs
+    }
+}
 
 const searchTerm = 'search term';
-export default function Home() {
+function Home({todos}) {
     return (<div className="home-container">
         <SearchBar search={searchTerm} />
 
@@ -18,3 +23,5 @@ export default function Home() {
         <Footer />
     </div>);
 }
+
+export default connect(mapStateToProps)(Home);
