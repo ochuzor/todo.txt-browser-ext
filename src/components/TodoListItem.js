@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+import {editTodo} from '../store/actions';
 import EditTodoPane from './EditTodoPane';
 
-export default function TodoListItem({todo, onTodoDelete}) {
+const mapStateToProps = state => {
+    return {
+        todoCopy: state.todoToEdit
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        editTodo: todo => {
+            dispatch(editTodo(todo));
+        }
+    };
+}
+
+export function TodoListItem({todo, onTodoDelete, editTodo, todoCopy}) {
     const getTodoCopy = (td = todo) => {
         return Object.assign({}, td)
     };
 
     const [edit, showEdit] = useState(false);
-    const [todoCopy, setTodoCopy] = useState(getTodoCopy()); 
 
     const deleteTodoHandler = () => {
         if (window.confirm('are you sure you want to delete')) {
@@ -16,11 +32,12 @@ export default function TodoListItem({todo, onTodoDelete}) {
     };
 
     const onEditClick = (todo) => {
-        setTodoCopy(getTodoCopy());
+        editTodo(getTodoCopy());
         showEdit(true);
     };
 
     const closeTodoEdit = () => {
+        editTodo({id: '', text: ''});
         showEdit(false);
     };
 
@@ -28,6 +45,8 @@ export default function TodoListItem({todo, onTodoDelete}) {
         console.log('saving:', todo)
         showEdit(false);
     };
+    
+    const canEdit = (cp) => cp && cp.id === todo.id;
 
     return (<>
         {!edit && <div className="todo-list-item">
@@ -38,7 +57,9 @@ export default function TodoListItem({todo, onTodoDelete}) {
             </div>
         </div>}
 
-        {edit && <EditTodoPane todo={todoCopy} onClose={closeTodoEdit}
+        {edit && canEdit(todoCopy) && <EditTodoPane todo={todoCopy} onClose={closeTodoEdit}
             onTodoSave={onTodoSave} key={todo.id} />}
     </>)
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListItem);

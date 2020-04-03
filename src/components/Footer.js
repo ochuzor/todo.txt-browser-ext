@@ -1,20 +1,37 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+import {editTodo} from '../store/actions';
 import EditTodoPane from './EditTodoPane';
 
-export default function Footer() {
-    const newTodo = (id = '') => ({id, text: ''});
+const mapDispatchToProps = dispatch => {
+    return {
+        setTodoToEdit: todo => {
+            dispatch(editTodo(todo));
+        }
+    };
+}
+
+const mapStateToProps = state => {
+    return {
+        todo: state.todoToEdit
+    };
+}
+
+const newTodo = (id = '') => ({id, text: ''});
+
+export function Footer({setTodoToEdit, todo = newTodo()}) {
 
     const [edit, showEdit] = useState(false);
-    const [todo, setTodo] = useState(newTodo());
 
-    const onEditClick = (todo) => {
-        setTodo(newTodo());
+    const onEditClick = () => {
+        setTodoToEdit(newTodo());
         showEdit(true);
     };
 
     const closeTodoEdit = () => {
         showEdit(false);
-        setTodo(newTodo(0));
+        setTodoToEdit(newTodo(0));
     };
 
     const onTodoSave = (todo) => {
@@ -36,3 +53,5 @@ export default function Footer() {
         </div>}
     </div>);
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

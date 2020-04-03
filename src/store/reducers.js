@@ -13,9 +13,10 @@ const defaultState = {
 	searchText: '',
 	todos: {
 		docs: sampleTodos,
-		total: 100,
+		total: 0,
 		page: 1,
-		pageCount: 3
+        pageCount: 1,
+        isLoading: false
 	},
 	todoToEdit: null
 }
@@ -58,7 +59,7 @@ function todos(state = defaultState.todos, action) {
 const todoApp = combineReducers({
     searchFilter,
     todos,
-    editTodo
+    todoToEdit: editTodo
 })
 
 export default todoApp
