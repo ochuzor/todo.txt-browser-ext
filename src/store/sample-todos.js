@@ -22,7 +22,7 @@ const sentences= [
 ];
 
 function getRandomSentence () {
-    var index= Math.floor(Math.random() * (sentences.length));
+    var index = Math.floor(Math.random() * (sentences.length));
     return sentences[index];
 }
 
