@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {editTodo} from '../store/actions';
+import {editTodo, saveTodo} from '../store/actions';
 import TodoListItem from './TodoListItem';
 import EditTodoPane from './EditTodoPane';
 
@@ -9,6 +9,9 @@ const mapDispatchToProps = dispatch => {
     return {
         editTodo: todo => {
             dispatch(editTodo(todo));
+        },
+        saveTodo: todo => {
+            dispatch(saveTodo(todo));
         }
     };
 }
@@ -19,7 +22,7 @@ const mapStateToProps = state => {
     };
 }
 
-export function TodoList({todos, todoToEdit, editTodo}) {
+export function TodoList({todos, todoToEdit, editTodo, saveTodo}) {
     const getTodoCopy = (todo) => {
         return Object.assign({}, todo)
     };
@@ -36,11 +39,12 @@ export function TodoList({todos, todoToEdit, editTodo}) {
     };
 
     const onTodoSave = (todo) => {
-        console.log('save:', todo);
+        saveTodo(todo);
+        closeTodoEdit();
     }
 
     return (<div>
-        { todos.map((todo) => {
+        {todos.map((todo) => {
             return (<div key={todo.id}>
                 {todoToEdit && todoToEdit.id === todo.id ? (<EditTodoPane todo={todoToEdit} onClose={closeTodoEdit}
                     onTodoSave={onTodoSave} />) :

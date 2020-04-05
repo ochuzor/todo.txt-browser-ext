@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import {editTodo} from '../store/actions';
+import {editTodo, saveTodo} from '../store/actions';
 import EditTodoPane from './EditTodoPane';
 
 const mapDispatchToProps = dispatch => {
     return {
         setTodoToEdit: todo => {
             dispatch(editTodo(todo));
+        },
+        saveTodo: todo => {
+            dispatch(saveTodo(todo));
         }
     };
 }
@@ -20,7 +23,7 @@ const mapStateToProps = state => {
 
 const newTodo = (id = '') => ({id, text: ''});
 
-export function Footer({setTodoToEdit, todo = newTodo()}) {
+export function Footer({setTodoToEdit, todo = newTodo(), saveTodo}) {
 
     const [edit, showEdit] = useState(false);
 
@@ -35,7 +38,7 @@ export function Footer({setTodoToEdit, todo = newTodo()}) {
     };
 
     const onTodoSave = (todo) => {
-        console.log('saving:', todo)
+        saveTodo(todo);
         showEdit(false);
     };
 

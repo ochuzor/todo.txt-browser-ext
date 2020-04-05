@@ -1,34 +1,28 @@
 import { combineReducers } from 'redux'
 
 import {
-    SET_SEARCH_TEXT, 
-    EDIT_TODO, 
-    SET_TODOS
+    EDIT_TODO,
+    LOAD_TODOS_REQUEST,
+    LOAD_TODOS_SUCCESS,
+    LOAD_TODOS_FAILED,
+    SAVE_TODO_SUCCESS
 } from './actions';
-import {generateSampleTodoTxts} from './sample-todos';
 
-const sampleTodos = generateSampleTodoTxts(50);
+// import {generateSampleTodoTxts} from './sample-todos';
+
+// const sampleTodos = generateSampleTodoTxts(50);
 
 const defaultState = {
 	searchText: '',
 	todos: {
-		docs: sampleTodos,
+		docs: [], // sampleTodos,
 		total: 0,
 		page: 1,
         pageCount: 1,
         isLoading: false
 	},
 	todoToEdit: null
-}
-
-function searchFilter(state = '', action) {
-    switch (action.type) {
-        case SET_SEARCH_TEXT:
-            return action.searchText;
-        default:
-            return state;
-    }
-}
+};
 
 function editTodo(state = null, action) {
     switch(action.type) {
@@ -41,23 +35,42 @@ function editTodo(state = null, action) {
 
 function todos(state = defaultState.todos, action) {
     switch(action.type) {
-        case SET_TODOS:
-            return action.todos;
+        case LOAD_TODOS_REQUEST:
+            return Object.assign({}, 
+                state,
+                {isLoading: true});
+        case LOAD_TODOS_SUCCESS:
+            return Object.assign({}, 
+                state, 
+                action.data, 
+                {isLoading: false});
+        case LOAD_TODOS_FAILED:
+            return Object.assign({}, 
+                state, 
+                {isLoading: false});
+
+        case SAVE_TODO_SUCCESS:
+            let docs = [];
+            const oldTodoIndex = state.docs.findIndex(t => t.id === action.todo.id);
+            if (oldTodoIndex !== -1) {
+                docs = state.docs.map((todo, index) => {
+                    if (index === oldTodoIndex) {
+                      return Object.assign({}, todo, action.todo)
+                    }
+                    return todo
+                });
+            }
+            else {
+                docs = [action.todo, ...state.docs];
+            }
+            
+            return Object.assign({}, state, {docs});
         default:
             return state;
     }
 }
 
-// export function todoApp(state = defaultState, action) {
-//     return {
-//         searchFilter: searchFilter(state.searchText, action),
-//         todos: todos(state.todos, action),
-//         editTodo: editTodo(state.todoToEdit, action)
-//     }
-// }
-
 const todoApp = combineReducers({
-    searchFilter,
     todos,
     todoToEdit: editTodo
 })
