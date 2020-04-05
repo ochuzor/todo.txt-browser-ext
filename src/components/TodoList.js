@@ -39,6 +39,7 @@ export function TodoList({todos, todoToEdit, editTodo, saveTodo}) {
     };
 
     const onTodoSave = (todo) => {
+        console.log('onTodoSave:', todo)
         saveTodo(todo);
         closeTodoEdit();
     }

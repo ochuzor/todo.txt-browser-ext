@@ -4,20 +4,23 @@ import TodoItemDetails from './TodoItemDetails';
 export default function EditTodoPane({todo, onTodoSave, onClose}) {
     const [text, setTextValue] = useState(todo.text);
 
-    const saveTodo = () => {
-        const data = {text}
-        if (todo.id && todo.id !== '' && todo.id !== 0) {
-            data.id = todo.id
+    const saveTodo = (event) => {
+        event.preventDefault();
+        if (!!text.trim()) {
+            const data = {text}
+            if (todo.id && todo.id !== '' && todo.id !== 0) {
+                data.id = todo.id
+            }
+    
+            onTodoSave(data);
         }
-
-        onTodoSave(data);
     };
 
     const handleChange = (event) => {
         setTextValue(event.target.value);
     };
 
-    return (<div className="edit-item-pane-cntr">
+    return (<form className="edit-item-pane-cntr" onSubmit={saveTodo}>
         <div>
             <input type="text" value={text} onChange={handleChange} />
         </div>
@@ -26,7 +29,7 @@ export default function EditTodoPane({todo, onTodoSave, onClose}) {
 
         <div className="bottom-btn-cntr">
             {!!onClose && <button onClick={onClose}>x</button>}
-            <button onClick={saveTodo}>save</button>
+            <button type="submit">save</button>
         </div>
-    </div>)
+    </form>)
 }
