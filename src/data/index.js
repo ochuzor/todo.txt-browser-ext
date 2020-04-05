@@ -11,3 +11,7 @@ export function saveTodo(todo) {
     if (!todo.id) todo.id = id++;
     return Promise.resolve(todo);
 }
+
+export function deleteTodo(id) {
+    return Promise.resolve(id);
+}

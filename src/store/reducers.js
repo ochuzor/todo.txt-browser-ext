@@ -5,7 +5,8 @@ import {
     LOAD_TODOS_REQUEST,
     LOAD_TODOS_SUCCESS,
     LOAD_TODOS_FAILED,
-    SAVE_TODO_SUCCESS
+    SAVE_TODO_SUCCESS,
+    DELETE_TODO_SUCCESS
 } from './actions';
 
 // import {generateSampleTodoTxts} from './sample-todos';
@@ -65,6 +66,11 @@ function todos(state = defaultState.todos, action) {
             }
             
             return Object.assign({}, state, {docs});
+
+        case DELETE_TODO_SUCCESS: {
+            const docs = state.docs.filter(doc => doc.id !== action.id);
+            return Object.assign({}, state, {docs});
+        }
         default:
             return state;
     }

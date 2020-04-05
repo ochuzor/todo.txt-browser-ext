@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {editTodo, saveTodo} from '../store/actions';
+import {
+    editTodo, 
+    saveTodo,
+    deleteTodo
+} from '../store/actions';
 import TodoListItem from './TodoListItem';
 import EditTodoPane from './EditTodoPane';
 
@@ -12,7 +16,8 @@ const mapDispatchToProps = dispatch => {
         },
         saveTodo: todo => {
             dispatch(saveTodo(todo));
-        }
+        },
+        deleteTodo: id => dispatch(deleteTodo(id))
     };
 }
 
@@ -22,12 +27,12 @@ const mapStateToProps = state => {
     };
 }
 
-export function TodoList({todos, todoToEdit, editTodo, saveTodo}) {
+export function TodoList({todos, todoToEdit, editTodo, saveTodo, deleteTodo}) {
     const getTodoCopy = (todo) => {
         return Object.assign({}, todo)
     };
     const onTodoDelete = (todo) => {
-        console.log('deleting:', todo);
+        deleteTodo(todo.id);
     };
 
     const onEditClick = (todo) => {
@@ -39,7 +44,6 @@ export function TodoList({todos, todoToEdit, editTodo, saveTodo}) {
     };
 
     const onTodoSave = (todo) => {
-        console.log('onTodoSave:', todo)
         saveTodo(todo);
         closeTodoEdit();
     }

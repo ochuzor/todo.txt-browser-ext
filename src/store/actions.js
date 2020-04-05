@@ -1,6 +1,7 @@
 import {
     getTodos, 
-    saveTodo as dbSaveTodo
+    saveTodo as dbSaveTodo,
+    deleteTodo as dbDeleteTodo
 } from '../data/index';
 
 export const LOAD_TODOS_REQUEST = 'LOAD_TODOS_REQUEST';
@@ -10,6 +11,10 @@ export const LOAD_TODOS_FAILED = 'LOAD_TODOS_FAILED';
 export const SAVE_TODO_REQUEST = 'SAVE_TODO_REQUEST';
 export const SAVE_TODO_SUCCESS = 'SAVE_TODO_SUCCESS';
 export const SAVE_TODO_FAILED = 'SAVE_TODO_FAILED';
+
+export const DELETE_TODO_REQUEST = 'DELETE_TODO_REQUEST';
+export const DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS';
+export const DELETE_TODO_FAILED = 'DELETE_TODO_FAILED';
 
 export const DELETE_TODO = 'DELETE_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
@@ -22,10 +27,8 @@ export function fetchTodos(options = {searchTerm: '', page: 1}) {
         return getTodos(options)
             .then(
                 data => dispatch(todoRequestSuccess(data)), 
-                err => {
-                    console.error(err);
-                    dispatch(todoRequestFailed(err));
-                });
+                err => dispatch(todoRequestFailed(err))
+            );
     };
 }
 
@@ -54,10 +57,10 @@ export function saveTodo(todo) {
         dispatch(saveTodoRequest());
 
         return dbSaveTodo(todo)
-            .then(data => {
-                    dispatch(saveTodoSuccess(data));
-                },
-                (error) => dispatch(saveTodoFailed(error)));
+            .then(
+                data => dispatch(saveTodoSuccess(data)),
+                (error) => dispatch(saveTodoFailed(error))
+            );
     };
 }
 
@@ -89,8 +92,34 @@ export function editTodo(todo) {
 }
 
 export function deleteTodo(id) {
+    return (dispatch) => {
+        dispatch(deleteTodoRequest(id));
+
+        return dbDeleteTodo(id)
+            .then(
+                data => dispatch(deleteTodoSuccess(data)),
+                error => dispatch(deleteTodoFailed(error))
+            );
+    }
+}
+
+export function deleteTodoRequest(id) {
     return {
-        type: DELETE_TODO,
+        type: DELETE_TODO_REQUEST,
         id
+    };
+}
+
+export function deleteTodoSuccess(id) {
+    return {
+        type: DELETE_TODO_SUCCESS,
+        id
+    };
+}
+
+export function deleteTodoFailed(error) {
+    return {
+        type: DELETE_TODO_FAILED,
+        error
     };
 }
