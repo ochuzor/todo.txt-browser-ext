@@ -22,14 +22,20 @@ export default function EditTodoPane({todo, onTodoSave, onClose}) {
 
     return (<form className="edit-item-pane-cntr" onSubmit={saveTodo}>
         <div>
-            <input type="text" value={text} onChange={handleChange} />
+            <input type="text" value={text} onChange={handleChange} 
+                placeholder="edit todo text..." />
         </div>
 
         <TodoItemDetails todoText={text} />
 
         <div className="bottom-btn-cntr">
-            {!!onClose && <button type="button" onClick={onClose}>x</button>}
-            <button type="submit">save</button>
+            <button className="btn-save-todo" type="submit">
+                <i className="fa fa-save"></i>
+            </button>
+
+            {!!onClose && <button type="button" className="btn-close" onClick={onClose}>
+                    <i className="fa fa-times"></i>
+                </button>}
         </div>
     </form>)
 }

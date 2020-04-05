@@ -15,8 +15,12 @@ export default function TodoListItem({todo, onTodoDelete, onEditClick}) {
     return (<div className="todo-list-item">
         {todo.text}
         <div>
-            <button onClick={deleteTodoHandler}>delete</button>
-            <button onClick={editTodoHandler}>edit</button>
+            <button className="btn-delete" onClick={deleteTodoHandler}>
+                <i className="fa fa-trash"></i>
+            </button>
+            <button className="btn-edit" onClick={editTodoHandler}>
+                <i className="fa fa-edit"></i>
+            </button>
         </div>
     </div>);
 }

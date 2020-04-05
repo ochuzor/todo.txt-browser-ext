@@ -44,12 +44,65 @@
     width: 100%;
     border: 0;
     padding: 8px;
+    background-color: #e7e7e7;
 }
 
 .bottom-btn-cntr {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.bottom-btn-cntr .add-btn {
+    background-color: #d3b340;
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.bottom-btn-cntr .btn-close {
+    background-color: #e7e7e7;
+    color: black;
+    border: none;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.bottom-btn-cntr .btn-save-todo {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.todo-list-item button {
+    border: none;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.todo-list-item .btn-edit {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.todo-list-item .btn-delete {
+    background-color: #f44336;
 }
 
 .edit-item-pane-cntr {

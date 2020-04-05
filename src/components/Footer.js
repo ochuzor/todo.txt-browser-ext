@@ -45,14 +45,18 @@ export function Footer({setTodoToEdit, todo = newTodo(), saveTodo}) {
     return (<div className="footer">
         {edit && <>
             <div className="bottom-btn-cntr">
-                <button onClick={closeTodoEdit}>x</button>
+                <button className="btn-close" onClick={closeTodoEdit}>
+                    <i className="fa fa-times"></i>
+                </button>
             </div>
             <EditTodoPane todo={todo} onTodoSave={onTodoSave}
                 key={todo.id} />
         </>}
 
         {!edit && <div className="bottom-btn-cntr">
-            <button onClick={onEditClick}>+</button>
+            <button className="add-btn" onClick={onEditClick}>
+                <i className="fa fa-plus"></i>
+            </button>
         </div>}
     </div>);
 }
