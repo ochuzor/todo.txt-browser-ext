@@ -16,7 +16,6 @@ export const DELETE_TODO_REQUEST = 'DELETE_TODO_REQUEST';
 export const DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS';
 export const DELETE_TODO_FAILED = 'DELETE_TODO_FAILED';
 
-export const DELETE_TODO = 'DELETE_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 
 // options = {searchTerm: '', page: 1}

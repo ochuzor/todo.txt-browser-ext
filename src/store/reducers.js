@@ -71,6 +71,7 @@ function todos(state = defaultState.todos, action) {
             const docs = state.docs.filter(doc => doc.id !== action.id);
             return Object.assign({}, state, {docs});
         }
+
         default:
             return state;
     }
