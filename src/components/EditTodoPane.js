@@ -25,7 +25,7 @@ export default function EditTodoPane({todo, onTodoSave, onClose}) {
             <input type="text" value={text} onChange={handleChange} />
         </div>
 
-        <TodoItemDetails todo={todo} />
+        <TodoItemDetails todoText={text} />
 
         <div className="bottom-btn-cntr">
             {!!onClose && <button type="button" onClick={onClose}>x</button>}

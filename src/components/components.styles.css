@@ -60,3 +60,9 @@
 .todo-item-details-cntr {
     padding: 5px;
 }
+
+.todo-details-heading {
+    font-size: 8pt;
+    font-weight: bold;
+    font-style: italic;
+}
