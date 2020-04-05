@@ -9,10 +9,6 @@ import {
     DELETE_TODO_SUCCESS
 } from './actions';
 
-// import {generateSampleTodoTxts} from './sample-todos';
-
-// const sampleTodos = generateSampleTodoTxts(50);
-
 const defaultState = {
 	searchText: '',
 	todos: {
