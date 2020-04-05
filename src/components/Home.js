@@ -11,10 +11,9 @@ const mapStateToProps = state => {
     }
 }
 
-const searchTerm = 'search term';
 function Home({todos}) {
     return (<div className="home-container">
-        <SearchBar search={searchTerm} />
+        <SearchBar />
 
         <div>
             <TodoList todos={todos} />

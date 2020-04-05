@@ -6,7 +6,8 @@ import {
     LOAD_TODOS_SUCCESS,
     LOAD_TODOS_FAILED,
     SAVE_TODO_SUCCESS,
-    DELETE_TODO_SUCCESS
+    DELETE_TODO_SUCCESS,
+    SET_SEARCH_TERM
 } from './actions';
 
 const defaultState = {
@@ -73,9 +74,19 @@ function todos(state = defaultState.todos, action) {
     }
 }
 
+function setSearchTerm(state = '', action) {
+    switch (action.type) {
+        case SET_SEARCH_TERM:
+            return action.text;
+        default:
+            return state;
+    }
+}
+
 const todoApp = combineReducers({
     todos,
-    todoToEdit: editTodo
+    todoToEdit: editTodo,
+    searchText: setSearchTerm
 })
 
 export default todoApp

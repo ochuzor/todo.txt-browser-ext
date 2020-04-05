@@ -18,6 +18,8 @@ export const DELETE_TODO_FAILED = 'DELETE_TODO_FAILED';
 
 export const EDIT_TODO = 'EDIT_TODO';
 
+export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+
 // options = {searchTerm: '', page: 1}
 export function fetchTodos(options = {searchTerm: '', page: 1}) {
     return (dispatch) => {
@@ -120,5 +122,12 @@ export function deleteTodoFailed(error) {
     return {
         type: DELETE_TODO_FAILED,
         error
+    };
+}
+
+export function setSearchTerm(text = '') {
+    return {
+        type: SET_SEARCH_TERM,
+        text
     };
 }
