@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import {editTodo, saveTodo} from '../store/actions';
 import EditTodoPane from './EditTodoPane';
-import {Paginate} from './Paginate';
+import Paginate from './Paginate';
 import FooterPageInfo from './FooterPageInfo';
 
 const mapDispatchToProps = dispatch => {

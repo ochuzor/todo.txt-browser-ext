@@ -20,12 +20,18 @@ export const EDIT_TODO = 'EDIT_TODO';
 
 export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
 
+export const PAGE_SIZE = 10;
+
 // options = {searchTerm: '', page: 1}
-export function fetchTodos(options = {searchTerm: '', page: 1}) {
+export function fetchTodos(options = {}) {
+    const opts = Object.assign({}, 
+        {searchTerm: '', page: 1, pageSize: PAGE_SIZE}, 
+        options);
+
     return (dispatch) => {
         dispatch(requestTodos());
 
-        return getTodos(options)
+        return getTodos(opts)
             .then(
                 data => dispatch(todoRequestSuccess(data)), 
                 err => dispatch(todoRequestFailed(err))
