@@ -23,7 +23,7 @@ export default function EditTodoPane({todo, onTodoSave, onClose}) {
     return (<form className="edit-item-pane-cntr" onSubmit={saveTodo}>
         <div>
             <input type="text" value={text} onChange={handleChange} 
-                placeholder="edit todo text..." />
+                placeholder="edit todo text...enter to save" />
         </div>
 
         <TodoItemDetails todoText={text} />

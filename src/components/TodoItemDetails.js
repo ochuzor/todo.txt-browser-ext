@@ -9,7 +9,7 @@ export default function TodoItemDetails({todoText}) {
             {todo.description}
         </div>}
 
-        {todo.isCompleted && <div>
+        {todoText && todo.isCompleted && <div>
             <span className="todo-details-heading">Is Completed:</span>{' '}
             {todo.isCompleted}
         </div>}
