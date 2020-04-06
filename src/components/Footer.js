@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {editTodo, saveTodo} from '../store/actions';
 import EditTodoPane from './EditTodoPane';
 import {Paginate} from './Paginate';
+import FooterPageInfo from './FooterPageInfo';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -56,6 +57,7 @@ export function Footer({setTodoToEdit, todo = newTodo(), saveTodo}) {
 
         {!edit && <div className="btm-btn-row-cntr">
             <Paginate />
+            <FooterPageInfo />
             <button className="add-btn" onClick={onEditClick}>
                 <i className="fa fa-plus"></i>
             </button>
