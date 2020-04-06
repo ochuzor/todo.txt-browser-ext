@@ -53,17 +53,6 @@
     align-items: flex-end;
 }
 
-.bottom-btn-cntr .add-btn {
-    background-color: #d3b340;
-    border: none;
-    color: white;
-    padding: 10px 22px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-}
-
 .bottom-btn-cntr .btn-close {
     background-color: #e7e7e7;
     color: black;
@@ -118,4 +107,38 @@
     font-size: 8pt;
     font-weight: bold;
     font-style: italic;
+}
+
+.btm-btn-row-cntr {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.btm-btn-row-cntr .add-btn {
+    background-color: #d3b340;
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.pagination-cntr {
+    display: flex;
+}
+
+.pagination-cntr .pagination-btn {
+    font-size: 16px;
+    padding: 3px 10px;
+    text-align: center;
+    border: none;
+}
+
+.pagination-cntr .pg-nbr-cntr {
+    padding: 16px;
+    font-size: 18px;
+    font-weight: bold; 
 }
