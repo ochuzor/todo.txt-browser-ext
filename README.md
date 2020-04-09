@@ -1,6 +1,9 @@
 This is a browser extension implementation for [todo.txt](https://github.com/todotxt/todo.txt). Works fine both with Chrome and Firefox browsers. The extension was built using [Reactjs](https://reactjs.org/). It shows a todo.txt list when you open a new tab. The todo.txt list data is compressed using [lz-string](https://github.com/pieroxy/lz-string) and saved in the browser's localstorage.
 
-There have been a lot of implementations for the [todo.txt](https://github.com/todotxt/todo.txt) online. The main idea for this implementation is is for learning. It utilizes some of my todo.txt libraries such as:
+Screenshot (on Chrome Browser): 
+![alt text](screenshots/screenshot-1.PNG "Todo.txt Extension screenshot")
+
+There have been a lot of implementations for the [todo.txt](https://github.com/todotxt/todo.txt) [online](http://todotxt.org/). The main idea for this implementation is is for learning. It utilizes some of my todo.txt libraries such as:
 
 [todo.txt-parser](https://github.com/ochuzor/todo.txt-parser):  a todo.txt text parser library.
 It provides a way to parse a todo.txt text and extract all the data in it.
