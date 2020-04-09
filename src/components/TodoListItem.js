@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TodoListItem({todo, onTodoDelete, onEditClick}) {
+export default function TodoListItem({todo, onTodoDelete, onEditClick, isDone = false}) {
 
     const deleteTodoHandler = () => {
         if (window.confirm('are you sure you want to delete')) {
@@ -12,7 +12,7 @@ export default function TodoListItem({todo, onTodoDelete, onEditClick}) {
         onEditClick(todo);
     }
 
-    return (<div className="todo-list-item">
+    return (<div className={"todo-list-item" + (isDone ? ' todo-is-done' : '')}>
         {todo.text}
         <div>
             <button className="btn-delete" onClick={deleteTodoHandler}>

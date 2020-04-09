@@ -48,13 +48,18 @@ export function TodoList({todos, todoToEdit, editTodo, saveTodo, deleteTodo}) {
         closeTodoEdit();
     }
 
+    const isDone = (todo = {}) => {
+        return todo.text && todo.text.startsWith('x');
+    };
+
     return (<div>
         {todos.map((todo) => {
             return (<div key={todo.id}>
                 {todoToEdit && todoToEdit.id === todo.id ? (<EditTodoPane todo={todoToEdit} onClose={closeTodoEdit}
                     onTodoSave={onTodoSave} />) :
                 (<TodoListItem 
-                    todo={todo} 
+                    todo={todo}
+                    isDone={isDone(todo)}
                     onTodoDelete={onTodoDelete}
                     onEditClick={onEditClick} />)}
             </div>);
